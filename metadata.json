@@ -1,6 +1,6 @@
 {
   "name": "DocNudge",
-  "description": "Stop begging clients for missing receipts. Lightweight document collection for bookkeepers and accountants.",
+  "description": "Smart document collection for bookkeepers. Automate client requests, track status, and get notified of new leads.",
   "requestFramePermissions": [],
   "majorCapabilities": []
 }

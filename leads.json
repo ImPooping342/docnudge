@@ -1,0 +1,28 @@
+[
+  {
+    "name": "Nicola Kosturski",
+    "email": "nicola.kosturski@gmail.com",
+    "company": "goog",
+    "role": "bookkeeper",
+    "currentTool": "cloud_storage",
+    "clientCount": "11-30",
+    "biggestProblem": "messy_channels",
+    "planClicked": "solo",
+    "id": 1777855909960,
+    "createdAt": "2026-05-04T00:51:49.960Z",
+    "isRead": true
+  },
+  {
+    "name": "Nicola Kosturski",
+    "email": "nicola.kosturski@gmail.com",
+    "company": "asd",
+    "role": "bookkeeper",
+    "currentTool": "portal",
+    "clientCount": "11-30",
+    "biggestProblem": "blurry_missing",
+    "planClicked": "solo",
+    "id": 1777855942924,
+    "createdAt": "2026-05-04T00:52:22.924Z",
+    "isRead": true
+  }
+]

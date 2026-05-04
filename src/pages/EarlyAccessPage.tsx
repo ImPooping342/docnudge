@@ -27,16 +27,32 @@ export default function EarlyAccessPage() {
     e.preventDefault();
     setIsLoading(true);
     
-    // Simulate API delay
-    await new Promise(r => setTimeout(r, 1500));
-    
-    await DocNudgeStore.saveEarlyAccessLead({
-      ...formData,
-      planClicked: plan,
-    });
-    
-    setIsLoading(false);
-    setIsSubmitted(true);
+    try {
+      // Send to server-side database
+      const response = await fetch('/api/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...formData,
+          planClicked: plan,
+        }),
+      });
+
+      if (!response.ok) throw new Error('Submission failed');
+
+      // Also save locally for convenience
+      await DocNudgeStore.saveEarlyAccessLead({
+        ...formData,
+        planClicked: plan,
+      });
+      
+      setIsSubmitted(true);
+    } catch (error) {
+      console.error("Lead submission error:", error);
+      alert("Something went wrong. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   if (isSubmitted) {
