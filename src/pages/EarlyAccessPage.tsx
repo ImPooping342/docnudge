@@ -50,6 +50,14 @@ export default function EarlyAccessPage() {
       if (!response.ok) throw new Error('Submission failed');
 
       setIsSubmitted(true);
+      // Google Ads lead conversion — only fires after successful form submit
+if (typeof window !== "undefined" && "gtag" in window) {
+  (window as any).gtag("event", "conversion", {
+    send_to: "AW-18137776914/e7SECU2xkaccEJKG4shD",
+    value: 1.0,
+    currency: "EUR",
+  });
+}
     } catch (error) {
       console.error("Lead submission error:", error);
       alert("Something went wrong. Please try again or email hello@getdocnudge.com.");
