@@ -5,7 +5,6 @@ import NewRequestPage from './pages/NewRequestPage';
 import RequestDetailPage from './pages/RequestDetailPage';
 import ClientUploadPage from './pages/ClientUploadPage';
 import EarlyAccessPage from './pages/EarlyAccessPage';
-import AdminLeadsPage from './pages/AdminLeadsPage';
 
 export default function App() {
   return (
@@ -13,7 +12,6 @@ export default function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/early-access" element={<EarlyAccessPage />} />
-        <Route path="/admin/leads" element={<AdminLeadsPage />} />
         
         {/* App Section */}
         <Route path="/app" element={<DashboardPage />} />

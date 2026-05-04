@@ -25,31 +25,34 @@ export default function EarlyAccessPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isLoading) return; // Prevent duplicate submissions
     setIsLoading(true);
     
     try {
-      // Send to server-side database
-      const response = await fetch('/api/leads', {
+      // Send to Formspree
+      const response = await fetch('https://formspree.io/f/maqveqav', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          ...formData,
-          planClicked: plan,
+          fullName: formData.name,
+          email: formData.email,
+          companyName: formData.company,
+          role: formData.role,
+          clientCount: formData.clientCount,
+          currentMethod: formData.currentTool,
+          biggestProblem: formData.biggestProblem,
+          selectedPlan: plan,
+          timestamp: new Date().toISOString(),
+          pageUrl: window.location.href,
         }),
       });
 
       if (!response.ok) throw new Error('Submission failed');
 
-      // Also save locally for convenience
-      await DocNudgeStore.saveEarlyAccessLead({
-        ...formData,
-        planClicked: plan,
-      });
-      
       setIsSubmitted(true);
     } catch (error) {
       console.error("Lead submission error:", error);
-      alert("Something went wrong. Please try again.");
+      alert("Something went wrong. Please try again or email hello@getdocnudge.com.");
     } finally {
       setIsLoading(false);
     }
@@ -66,9 +69,9 @@ export default function EarlyAccessPage() {
           <div className="bg-emerald-100 text-emerald-600 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-8">
             <CheckCircle2 className="w-10 h-10" />
           </div>
-          <h1 className="text-3xl font-extrabold text-slate-900 mb-4">You're on the list!</h1>
+          <h1 className="text-3xl font-extrabold text-slate-900 mb-4">Request Received!</h1>
           <p className="text-lg text-slate-600 mb-8 leading-relaxed">
-            We're onboarding early users in small batches. When our queue reaches you, we'll send your access link to <strong>{formData.email}</strong>.
+            Thanks — your early access request was received. We’ll review your workflow and email you shortly.
           </p>
           <div className="space-y-4">
             <Button className="w-full h-12" onClick={() => navigate('/app')}>
