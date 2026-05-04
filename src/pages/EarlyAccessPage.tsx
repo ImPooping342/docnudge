@@ -49,14 +49,22 @@ export default function EarlyAccessPage() {
 
       if (!response.ok) throw new Error('Submission failed');
 
-      setIsSubmitted(true);
-      // Google Ads lead conversion — only fires after successful form submit
-if (typeof window !== "undefined" && "gtag" in window) {
+setIsSubmitted(true);
+
+// Google Ads lead conversion — only fires after successful form submit
+console.log("DocNudge lead submitted successfully. Attempting Google Ads conversion event...");
+
+if (typeof window !== "undefined" && typeof (window as any).gtag === "function") {
   (window as any).gtag("event", "conversion", {
     send_to: "AW-18137776914/e7SECU2xkaccEJKG4shD",
     value: 1.0,
     currency: "EUR",
+    event_callback: () => {
+      console.log("Google Ads conversion event fired successfully.");
+    },
   });
+} else {
+  console.warn("Google Ads gtag function was not found on window.");
 }
     } catch (error) {
       console.error("Lead submission error:", error);
