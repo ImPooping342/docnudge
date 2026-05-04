@@ -56,7 +56,7 @@ console.log("DocNudge lead submitted successfully. Attempting Google Ads convers
 
 if (typeof window !== "undefined" && typeof (window as any).gtag === "function") {
   (window as any).gtag("event", "conversion", {
-    send_to: "AW-18137776914/e7SECU2xkaccEJKG4shD",
+    send_to: "AW-18137776914/e7SECJ2xkaccEJKG4shD",
     value: 1.0,
     currency: "EUR",
     event_callback: () => {
